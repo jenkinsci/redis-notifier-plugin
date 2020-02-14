@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+    <f:section title="${%Redis}">
+        <f:entry title="${%Server Url:port}">
+            <f:textbox field="redisServerUrl" value="${instance.redisServerUrl}" />
+        </f:entry>
+        <f:validateButton
+           title="${%Create Connection}" progress="${%Testing...}"
+           method="testConnection" with="redisServerUrl" />
+    </f:section>
+</j:jelly>

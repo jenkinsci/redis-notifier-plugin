@@ -8,9 +8,10 @@
         <version>3.50</version>
         <relativePath />
     </parent>
-    <artifactId>redis-plugin</artifactId>
+    <groupId>io.jenkins.plugins</groupId>
+    <artifactId>redis-client</artifactId>
     <version>0.1.2-SNAPSHOT</version>
-    <name>Redis Plugin</name>
+    <name>JRedis Plugin</name>
     <packaging>hpi</packaging>
     <description>A redis agent to send Jenkins json-object to a redis server.</description>
     <properties>
@@ -25,20 +26,21 @@
         </license>
     </licenses>
 
-    <!-- The default repository. -->
+    <!-- The default repository.
     <scm>
         <connection>scm:git:git://github.com/d3camp0s/redis-plugin.git</connection>
         <developerConnection>scm:git:git@github.com:d3camp0s/redis-plugin.git</developerConnection>
         <url>http://github.com/d3camp0s/redis-plugin</url>
         <tag>HEAD</tag>
     </scm>
+    -->
 
     <!-- If you want this to appear on the wiki page: -->
     <developers>
       <developer>
-        <id>dcampos</id>
+        <id>d3camp0s</id>
         <name>Diego Campos A.</name>
-        <email>diego.campos@tsoftglobal.com</email>
+        <email>d_campos@hotmail.cl</email>
       </developer>
     </developers>
 
@@ -91,12 +93,12 @@
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-cps</artifactId>
-            <version>2.78</version>
+            <version>2.74</version>
         </dependency>
         <dependency>
             <groupId>org.jenkins-ci.plugins.workflow</groupId>
             <artifactId>workflow-step-api</artifactId>
-            <version>2.21</version>
+            <version>2.20</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>

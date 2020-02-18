@@ -1,4 +1,4 @@
 <?jelly escape-by-default='true'?>
 <div>
-    TODO
+    Permite a los usuarios enviar informacion (en formato JSON) directamemte a un servidor redis desde un pipeline de tipo declarativo.
 </div>

@@ -9,7 +9,7 @@
         <relativePath />
     </parent>
     <groupId>io.jenkins.plugins</groupId>
-    <artifactId>redis-client</artifactId>
+    <artifactId>redis-global-variable</artifactId>
     <version>0.1.2-SNAPSHOT</version>
     <name>JRedis Plugin</name>
     <packaging>hpi</packaging>

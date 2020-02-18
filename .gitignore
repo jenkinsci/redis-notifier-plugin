@@ -5,3 +5,7 @@ work/
 etc/
 bin/
 .vscode/
+.classpath
+.factorypath
+.project
+.settings/

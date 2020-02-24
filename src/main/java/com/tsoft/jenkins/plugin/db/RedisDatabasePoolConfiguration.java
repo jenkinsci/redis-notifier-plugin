@@ -53,23 +53,26 @@ public class RedisDatabasePoolConfiguration extends GlobalConfiguration {
     }
 
     public FormValidation doTestConnection(@QueryParameter String redisServerUrl) throws IOException, ServletException {
-        try {
-            Matcher m = p.matcher(redisServerUrl);
-            // Se valida el formato de server_url:port
-            if(m.matches()){
-                String url = m.group(2);
-                if(testConection(url)){
-                    return FormValidation.ok("Success");
+        if (Util.fixEmptyAndTrim(redisServerUrl) == null ) {
+            return FormValidation.error("http://server_url:port can not be empty");
+        }
+        else {
+            try {
+                // Se valida el formato de server_url:port
+                Matcher m = p.matcher(redisServerUrl);
+                if (m.matches()) {
+                    String url = m.group(2);
+                    if (testConection(url)) {
+                        return FormValidation.ok("Success");
+                    } else {
+                        return FormValidation.warning("No se puede comprobar la conexion con eL servidor.");
+                    }
+                } else {
+                    return FormValidation.error("La direccion de servidor debe tener el formato: `http://server_url:port`");
                 }
-                else{
-                    return FormValidation.warning("No se puede comprobar la conexion con eL servidor.");
-                }
+            } catch (Exception e) {
+                return FormValidation.error(e.toString());
             }
-            else{
-                return FormValidation.error("La direccion de servidor debe tener el formato: `http://server:port`");
-            }
-        } catch (Exception e) {
-            return FormValidation.error(e.toString());
         }
     }
 

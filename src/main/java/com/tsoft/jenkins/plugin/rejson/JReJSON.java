@@ -6,13 +6,9 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.commands.ProtocolCommand;
 import redis.clients.jedis.util.Pool;
 import redis.clients.jedis.util.SafeEncoder;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * JReJSON is the main ReJSON client class, wrapping connection management and all ReJSON commands
- */
 /**
  * JReJSON is the main ReJSON client class, wrapping connection management and all ReJSON commands
  */

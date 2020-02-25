@@ -54,7 +54,7 @@ public class RedisDatabasePoolConfiguration extends GlobalConfiguration {
 
     public FormValidation doTestConnection(@QueryParameter String redisServerUrl) throws IOException, ServletException {
         if (Util.fixEmptyAndTrim(redisServerUrl) == null ) {
-            return FormValidation.error("http://server_url:port can not be empty");
+            return FormValidation.error("server_url can not be empty");
         }
         else {
             try {

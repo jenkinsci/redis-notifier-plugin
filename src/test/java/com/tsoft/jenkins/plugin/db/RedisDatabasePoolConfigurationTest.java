@@ -13,7 +13,7 @@ public class RedisDatabasePoolConfigurationTest {
     private Pattern p = null;
     @Before
     public void setUp() throws Exception {
-        p = Pattern.compile("^(https?\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
+        p = Pattern.compile("^([http|https]*\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
     }
 
     @Test
@@ -23,19 +23,25 @@ public class RedisDatabasePoolConfigurationTest {
         assertTrue(m.matches());
         assertEquals(2, m.groupCount());
 
+        System.out.println(m.group(2));
+
         server = "https://localhost:6793";
         m = p.matcher(server);
         assertTrue(m.matches());
         assertEquals(2, m.groupCount());
+
+        System.out.println(m.group(2));
 
         server = "localhost:6793";
         m = p.matcher(server);
         assertTrue(m.matches());
         assertEquals(2, m.groupCount());
 
-        System.out.println(m.group(0));
-        System.out.println(m.group(1));
         System.out.println(m.group(2));
 
+    }
+
+    @Test
+    public void testDoTestConnection() {
     }
 }

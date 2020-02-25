@@ -20,7 +20,7 @@ public class RedisDatabasePoolConfiguration extends GlobalConfiguration {
 
     static final Logger log = Logger.getLogger(RedisDatabasePoolConfiguration.class.getName());
     private String redisServerUrl = "localhost:6379";
-    private Pattern p = Pattern.compile("^(https?\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
+    private Pattern p = Pattern.compile("^([http|https]*\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
 
     /** @return the singleton instance */
     public static RedisDatabasePoolConfiguration get() {
@@ -40,14 +40,14 @@ public class RedisDatabasePoolConfiguration extends GlobalConfiguration {
 
     public FormValidation doCheckRedisServerUrl(@QueryParameter String value) {
         if (Util.fixEmptyAndTrim(value) == null ) {
-            return FormValidation.error("http://server_url:port can not be empty");
+            return FormValidation.error("server_url can not be empty");
         }
         else {
             Matcher m = p.matcher(value);
             if( m.matches() )
                 return FormValidation.ok();
             else
-                return FormValidation.error("La direccion de servidor debe tener el formato: `hhtp://server:port`");
+                return FormValidation.error("La direccion de servidor debe tener el formato: `http://server_url:port`");
         }
 
     }

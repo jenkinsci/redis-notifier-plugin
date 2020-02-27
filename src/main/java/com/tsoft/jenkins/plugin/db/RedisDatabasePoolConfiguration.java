@@ -40,7 +40,9 @@ public class RedisDatabasePoolConfiguration extends GlobalConfiguration {
     }
     public String getRedisServerUrl(){ return this.redisServerUrl; }
 
+    @RequirePOST
     public FormValidation doCheckRedisServerUrl(@QueryParameter String value) {
+        Jenkins.get().checkPermission(Jenkins.ADMINISTER);
         if (Util.fixEmptyAndTrim(value) == null ) {
             return FormValidation.error("server_url can not be empty");
         }

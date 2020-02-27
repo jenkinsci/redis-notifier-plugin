@@ -4,8 +4,10 @@ import hudson.Extension;
 import hudson.Util;
 import hudson.util.FormValidation;
 import jenkins.model.GlobalConfiguration;
+import jenkins.model.Jenkins;
 import org.kohsuke.stapler.DataBoundSetter;
 import org.kohsuke.stapler.QueryParameter;
+import org.kohsuke.stapler.interceptor.RequirePOST;
 import redis.clients.jedis.Jedis;
 
 import javax.servlet.ServletException;
@@ -52,7 +54,9 @@ public class RedisDatabasePoolConfiguration extends GlobalConfiguration {
 
     }
 
+    @RequirePOST
     public FormValidation doTestConnection(@QueryParameter String redisServerUrl) throws IOException, ServletException {
+        Jenkins.get().checkPermission(Jenkins.ADMINISTER);
         if (Util.fixEmptyAndTrim(redisServerUrl) == null ) {
             return FormValidation.error("server_url can not be empty");
         }

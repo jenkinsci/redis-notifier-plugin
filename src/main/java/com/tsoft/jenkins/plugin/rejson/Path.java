@@ -3,7 +3,7 @@ package com.tsoft.jenkins.plugin.rejson;
 /**
  * Path is a ReJSON path, representing a valid path into an object
  */
-public class Path {
+class Path {
 
     public static final Path ROOT_PATH = new Path(".");
 

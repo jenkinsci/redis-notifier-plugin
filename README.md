@@ -1,5 +1,5 @@
-JRedis Plugin - Global Variable
-==============================
+JRedis Notifier Plugin
+======================
 
 Descripcion
 -----

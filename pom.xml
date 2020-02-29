@@ -9,7 +9,7 @@
         <relativePath />
     </parent>
     <groupId>io.jenkins.plugins</groupId>
-    <artifactId>redis-notifier-plugin</artifactId>
+    <artifactId>redis-notifier</artifactId>
     <version>0.1.2-SNAPSHOT</version>
     <name>JRedis Notifier Plugin</name>
     <packaging>hpi</packaging>

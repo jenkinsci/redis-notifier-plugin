@@ -9,9 +9,9 @@
         <relativePath />
     </parent>
     <groupId>io.jenkins.plugins</groupId>
-    <artifactId>redis-global-variable</artifactId>
+    <artifactId>redis-notifier-plugin</artifactId>
     <version>0.1.2-SNAPSHOT</version>
-    <name>JRedis Plugin</name>
+    <name>JRedis Notifier Plugin</name>
     <packaging>hpi</packaging>
     <description>A redis agent to send Jenkins json-object to a redis server.</description>
     <properties>

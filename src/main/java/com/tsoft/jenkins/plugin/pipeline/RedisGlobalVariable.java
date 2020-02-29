@@ -1,35 +1,43 @@
 package com.tsoft.jenkins.plugin.pipeline;
 
-import groovy.lang.Binding;
+import com.google.common.collect.ImmutableSet;
 import hudson.Extension;
-import org.jenkinsci.plugins.workflow.cps.CpsScript;
-import org.jenkinsci.plugins.workflow.cps.GlobalVariable;
-import javax.annotation.Nonnull;
+import hudson.model.Run;
+import hudson.model.TaskListener;
+import org.jenkinsci.plugins.workflow.steps.Step;
+import org.jenkinsci.plugins.workflow.steps.StepContext;
+import org.jenkinsci.plugins.workflow.steps.StepDescriptor;
+import org.jenkinsci.plugins.workflow.steps.StepExecution;
+import java.io.Serializable;
+import java.util.Set;
 
 @Extension
-public class RedisGlobalVariable extends GlobalVariable {
+public class RedisGlobalVariable extends Step implements Serializable {
 
-    @Nonnull
     @Override
-    public String getName() {
-        return "jredis";
+    public StepExecution start(StepContext stepContext) throws Exception {
+        return null;
     }
 
-    @Nonnull
-    @Override
-    public Object getValue(@Nonnull CpsScript script) throws Exception {
-        Binding binding = script.getBinding();
-        Object redisdb;
-        if (binding.hasVariable(getName())) {
-            redisdb = binding.getVariable(getName());
-        } else {
-            redisdb = script.getClass().getClassLoader()
-                    .loadClass("com.tsoft.jenkins.plugin.RedisClient")
-                    .getConstructor(CpsScript.class).newInstance(script);
-            binding.setVariable(getName(), redisdb);
+    @Extension // This indicates to Jenkins that this is an implementation of an extension point.
+    public static final class DescriptorImpl extends StepDescriptor {
+
+        /**
+         * This human readable name is used in the configuration screen.
+         */
+        @Override
+        public String getDisplayName() {
+            return "Json Redis Message";
         }
-        return redisdb;
+
+        @Override
+        public Set<Class<?>> getRequiredContext() {
+            return ImmutableSet.of(Run.class, TaskListener.class);
+        }
+
+        @Override
+        public String getFunctionName() {
+            return "jredis";
+        }
     }
-
-
 }

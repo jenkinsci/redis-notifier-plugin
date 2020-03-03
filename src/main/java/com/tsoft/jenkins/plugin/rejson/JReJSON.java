@@ -47,7 +47,7 @@ public class JReJSON {
         }
 
         public byte[] getRaw() {
-            return raw;
+            return this.raw;
         }
     }
 
@@ -237,7 +237,7 @@ public class JReJSON {
      * @return the Java class of the requested object
      */
     public Class<?> type(String key) {
-        return type(key);
+        return type(key, new Path("."));
     }
 
     /**

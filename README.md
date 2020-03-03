@@ -9,7 +9,7 @@ Para los pipeline de tipo declarativo expone una variable global llamada `jredis
 Requerimientos
 ----------------------
 
-**Prerequisitos**: Es necesario configurar la conexion hacia el servidor redis desde las configuraciones globales de Jenkins indicando `URL` y `PORT` como un string en formato: `http://localhost:6397`
+**Prerequisitos**: Es necesario configurar la conexion hacia el servidor redis desde las configuraciones globales de Jenkins indicando `URL` y `PORT` como un string en formato: `http://localhost:6379`
 
 --------------------
 Examples:

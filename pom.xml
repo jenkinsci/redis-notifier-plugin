@@ -34,7 +34,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/jenkinsci/redis-notifier-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:jenkinsci/redis-notifier-plugin.git</developerConnection>
+        <developerConnection>scm:git:git@github.com:d3camp0s/redis-notifier-plugin.git</developerConnection>
         <url>https://github.com/jenkinsci/redis-notifier-plugin</url>
         <tag>redis-notifier-0.1.2</tag>
     </scm>

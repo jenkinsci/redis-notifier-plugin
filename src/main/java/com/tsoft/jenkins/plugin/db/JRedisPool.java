@@ -12,42 +12,39 @@ import java.util.regex.Pattern;
 
 public class JRedisPool {
 
-    static JReJSON client = null;
+    private static JReJSON client;
     private static final Logger log = Logger.getLogger(JRedisPool.class.getName());
-    private Pattern p = Pattern.compile("^(https?\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
 
     /**
      * @return the singleton instance of Jedis client
      */
     public static JReJSON getPool() {
         if (client == null) {
-            new JRedisPool();
+            client = JRedisPool();
             log.info("Nuevo cliente de redis creado: " + client.hashCode());
         }
         return client;
     }
 
-    private JRedisPool() {
-        createRedisConection();
-    }
-
-    private void createRedisConection() {
+    private static JReJSON JRedisPool() {
         try {
             String serverUrl = RedisDatabasePoolConfiguration.get().getRedisServerUrl();
             if (client == null && serverUrl != null) {
+                Pattern p = Pattern.compile("^(https?\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
                 Matcher m = p.matcher(serverUrl);
                 if( m.matches() ) {
                     log.config("redis data for new conection: " + serverUrl);
                     String url = m.group(2);
                     String server = url.split(":")[0];
                     int port = Integer.parseInt(url.split(":")[1]);
-                    client = new JReJSON(server, port);
+                    return new JReJSON(server, port);
                 }
             }
         }
         catch (Exception e){
             e.printStackTrace();
         }
+        return null;
     }
 
 }

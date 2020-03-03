@@ -6,6 +6,8 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.commands.ProtocolCommand;
 import redis.clients.jedis.util.Pool;
 import redis.clients.jedis.util.SafeEncoder;
+
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,21 +35,18 @@ public class JReJSON {
         }
     }
 
-    /**
-     * Existential modifier for the set command, by default we don't care
-     */
     public enum ExistenceModifier implements ProtocolCommand {
         DEFAULT(""),
         NOT_EXISTS("NX"),
         MUST_EXIST("XX");
-        private final byte[] raw;
+        private final String raw;
 
         ExistenceModifier(String alt) {
-            raw = SafeEncoder.encode(alt);
+            this.raw = alt;
         }
 
         public byte[] getRaw() {
-            return this.raw;
+            return raw.getBytes(Charset.forName("UTF-8"));
         }
     }
 

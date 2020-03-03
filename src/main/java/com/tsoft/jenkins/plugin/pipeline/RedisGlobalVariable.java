@@ -1,43 +1,35 @@
 package com.tsoft.jenkins.plugin.pipeline;
 
-import com.google.common.collect.ImmutableSet;
+import groovy.lang.Binding;
 import hudson.Extension;
-import hudson.model.Run;
-import hudson.model.TaskListener;
-import org.jenkinsci.plugins.workflow.steps.Step;
-import org.jenkinsci.plugins.workflow.steps.StepContext;
-import org.jenkinsci.plugins.workflow.steps.StepDescriptor;
-import org.jenkinsci.plugins.workflow.steps.StepExecution;
-import java.io.Serializable;
-import java.util.Set;
+import org.jenkinsci.plugins.workflow.cps.CpsScript;
+import org.jenkinsci.plugins.workflow.cps.GlobalVariable;
+import javax.annotation.Nonnull;
 
 @Extension
-public class RedisGlobalVariable extends Step implements Serializable {
+public class RedisGlobalVariable extends GlobalVariable {
 
+    @Nonnull
     @Override
-    public StepExecution start(StepContext stepContext) throws Exception {
-        return null;
+    public String getName() {
+        return "jredis";
     }
 
-    @Extension // This indicates to Jenkins that this is an implementation of an extension point.
-    public static final class DescriptorImpl extends StepDescriptor {
-
-        /**
-         * This human readable name is used in the configuration screen.
-         */
-        @Override
-        public String getDisplayName() {
-            return "Json Redis Message";
+    @Nonnull
+    @Override
+    public Object getValue(@Nonnull CpsScript script) throws Exception {
+        Binding binding = script.getBinding();
+        Object redisdb;
+        if (binding.hasVariable(getName())) {
+            redisdb = binding.getVariable(getName());
+        } else {
+            redisdb = script.getClass().getClassLoader()
+                    .loadClass("com.tsoft.jenkins.plugin.RedisClient")
+                    .getConstructor(CpsScript.class).newInstance(script);
+            binding.setVariable(getName(), redisdb);
         }
-
-        @Override
-        public Set<Class<?>> getRequiredContext() {
-            return ImmutableSet.of(Run.class, TaskListener.class);
-        }
-
-        @Override
-        public String getFunctionName() {
-            return "jredis";
-        }
+        return redisdb;
     }
+
+
 }

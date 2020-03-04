@@ -9,12 +9,12 @@ Para los pipeline de tipo declarativo expone una variable global llamada `jredis
 Requerimientos
 ----------------------
 
-**Prerequisitos**: Es necesario configurar la conexion hacia el servidor redis desde las configuraciones globales de Jenkins indicando `URL` y `PORT` como un string en formato: **http://redis-server.zz:123**
+**Prerequisitos**: Es necesario configurar la conexion hacia el servidor redis desde las configuraciones globales de Jenkins indicando `URL` y `PORT` como un string en formato: `http://localhost:6397`
 
 --------------------
 Examples:
 
-```yaml
+```Groovy
 stage('Test: Redis') {
     steps {
         script {
@@ -26,7 +26,7 @@ stage('Test: Redis') {
 ```
 
 
-```yaml
+```Groovy
 stage('Test: Redis') {
     steps {
         script {

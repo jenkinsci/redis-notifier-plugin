@@ -9,3 +9,5 @@ bin/
 .factorypath
 .project
 .settings/
+release.properties
+.releaseBackup

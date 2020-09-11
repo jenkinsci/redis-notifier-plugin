@@ -13,7 +13,7 @@ public class RedisDatabasePoolConfigurationTest {
     private Pattern p = null;
     @Before
     public void setUp() throws Exception {
-        p = Pattern.compile("^([http|https]*\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
+        p = Pattern.compile("^([http|https]*\\:\\/\\/)?([a-zA-Z0-9\\.]+\\:\\d{2,5})$");
     }
 
     @Test

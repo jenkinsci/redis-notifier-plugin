@@ -30,7 +30,7 @@ public class JRedisPool {
         try {
             String serverUrl = RedisDatabasePoolConfiguration.get().getRedisServerUrl();
             if (client == null && serverUrl != null) {
-                Pattern p = Pattern.compile("^(https?\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
+                Pattern p = Pattern.compile("^([http|https]*\\:\\/\\/)?([a-zA-Z0-9\\.]+\\:\\d{2,5})$");
                 Matcher m = p.matcher(serverUrl);
                 if( m.matches() ) {
                     log.config("redis data for new conection: " + serverUrl);

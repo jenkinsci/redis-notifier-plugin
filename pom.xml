@@ -10,7 +10,7 @@
 
     <groupId>io.jenkins.plugins</groupId>
     <artifactId>redis-notifier</artifactId>
-    <version>0.1.9-SNAPSHOT</version>
+    <version>0.1.6</version>
     <name>JRedis Notifier Plugin</name>
     <packaging>hpi</packaging>
 

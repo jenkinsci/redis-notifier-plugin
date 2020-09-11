@@ -22,7 +22,7 @@ public class RedisDatabasePoolConfiguration extends GlobalConfiguration {
 
     static final Logger log = Logger.getLogger(RedisDatabasePoolConfiguration.class.getName());
     private String redisServerUrl = "localhost:6379";
-    private Pattern p = Pattern.compile("^([http|https]*\\:\\/\\/)?(\\w+\\:\\d{2,5})$");
+    private Pattern p = Pattern.compile("^([http|https]*\\:\\/\\/)?([a-zA-Z0-9\\.]+\\:\\d{2,5})$");
 
     /** @return the singleton instance */
     public static RedisDatabasePoolConfiguration get() {
